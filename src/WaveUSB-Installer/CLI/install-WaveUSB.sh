@@ -22,3 +22,39 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 comment
+debianDependencies(){
+    sudo apt-get update && sudo apt-get full-upgrade
+    sudo apt-get install wget git curl dmg2img coreutils gcc g++
+}
+ubuntuDependencies(){
+    sudo add-apt-repository universe
+    sudo apt-get update && sudo apt-get full-upgrade
+    sudo apt install wget git curl dmg2img coreutils gcc g++
+}
+archlinuxDependencies(){
+    pacman -Syu
+    pacman -S wget git curl base-devel gcc g++
+    git clone https://aur.archlinux.org/dmg2img.git
+    cd dmg2img
+    makepkg -sri
+}
+opensuseDependencies(){
+    echo "Choose your Opensuse Release:"
+    echo "1.Opensuse  Leap"
+    echo "2. Opensuse Tumbleweed"
+    while true; do
+    read yn
+    case $yn in
+        [1]* ) wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/filesystems/openSUSE_Tumbleweed/x86_64/dmg2img-1.6.5-1.4.x86_64.rpm && sudo zypper install dmg2img-*.x86_64.rpm; break;;
+        [2]* ) wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/filesystems/SLE_12/x86_64/dmg2img-1.6.5-1.2.x86_64.rpm && sudo zypper install dmg2img-*.x86_64.rpm;;
+        * ) echo "Please answer a 1 or a 2.";;
+    esac
+done
+    sudo zypper install gcc-c++
+}
+fedoraDependencies(){
+
+}
+solusDependencies(){
+
+}
