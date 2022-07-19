@@ -1,3 +1,5 @@
+package installGUI;
+
 import javax.swing.JFileChooser;
 
 public class Install{
