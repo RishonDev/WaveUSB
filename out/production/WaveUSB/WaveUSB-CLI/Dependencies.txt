@@ -1,4 +1,0 @@
-dmg2img
-git 
-base-devel
-wget
