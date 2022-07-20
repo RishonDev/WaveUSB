@@ -1,4 +1,4 @@
-package WaveUSB;
+package java.WaveUSB;
 
 public interface Constants {
     String macOS11="https://swcdn.apple.com/content/downloads/44/35/012-22320-A_AOID136T4U/g33x1akyjzjpkpe7z0xn7nguoakljpe3a8/InstallAssistant.pkg";
