@@ -36,22 +36,30 @@ class Main {
     JMenu fileMenu = new JMenu("File");
     JMenu viewMenu = new JMenu("View");
     JMenu downloadMenu = new JMenu("Download");
-    static JButton button = new JButton("");
+    static JButton macOSButton = new JButton("macOS");
+    static JButton windowsButton = new JButton("Windows");
+    static JButton linuxButton = new JButton("Linux");
     static JLabel chooseOS = new JLabel("To start, choose your operating system installer you want to write to your USB:");
     static JLabel welcomeLabel = new JLabel("Welcome!");
     public static void main(String[] args){
         frame.setSize(new Dimension(800,800));
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        ApplicationPanel.setLayout(layout);
         welcomeLabel.setFont(new Font("SansSerif", Font.PLAIN,30));
         welcomeLabel.setBounds(100,100,500,100);
         chooseOS.setBounds(200,50,500,100);
+        macOSButton.setBounds(200,400,200,30);
+        windowsButton.setBounds(200,400,300,30);
+        linuxButton.setBounds(200,400,400,30);
         welcome.add(welcomeLabel);
         welcome.add(chooseOS);
+        welcome.add(macOSButton);
+        welcome.add(windowsButton);
+        welcome.add(linuxButton);
+        ApplicationPanel.setLayout(layout);
         ApplicationPanel.add(welcome,"1");
         layout.show(ApplicationPanel ,"1");
         frame.add(ApplicationPanel);
-        frame.pack();
+        //frame.pack();
         frame.setVisible(true);
 
     }
