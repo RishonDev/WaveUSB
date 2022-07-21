@@ -1,4 +1,4 @@
-package java.installGUI;
+package javaPack.installGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
