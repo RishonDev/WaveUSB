@@ -1,1 +1,3 @@
-# java.installGUI.WaveUSB
+#WaveUSB
+
+The USB writer completly designed in java.
