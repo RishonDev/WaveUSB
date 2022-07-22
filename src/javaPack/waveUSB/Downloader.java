@@ -1,4 +1,4 @@
-package javaPack.WaveUSB;
+package javaPack.waveUSB;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

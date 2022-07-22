@@ -1,4 +1,4 @@
-package javaPack.WaveUSB;
+package javaPack.waveUSB;
 
 import java.io.File;
 import java.io.FileInputStream;
