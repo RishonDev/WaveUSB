@@ -3,14 +3,15 @@ package javaPack.waveUSB;
 import javax.net.ssl.HttpsURLConnection;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-
-import static javaPack.waveUSB.Constants.fedoraServerNet;
 
 class Main {
    //Components of the Application
@@ -20,6 +21,8 @@ class Main {
     static JPanel macOS = new JPanel();
     static JPanel Linux = new JPanel();
     static JPanel Windows = new JPanel();
+    static JPanel others = new JPanel();
+    static JPanel downloadImage = new JPanel();
     static JPanel writeImageToUSB = new JPanel();
     static JPanel verifyUSB = new JPanel();
     static JPanel finishedScreen = new JPanel();//ending screen
@@ -27,29 +30,31 @@ class Main {
     static JButton macOS_12 = new JButton("macOS 12(Codenamed Monterey)");
     static JButton macOS_12_MBP = new JButton("macOS 12 (Macbook Pro specific)(Codenamed Monterey)");
     static JLabel macOSChoose = new JLabel("Choose your macOS Version:");
-    static JButton[] previous = new JButton[5];
     static JInternalFrame jInternalFrame = new JInternalFrame();
     static JProgressBar jProgressBar = new JProgressBar();
     static JScrollPane jScrollPane = new JScrollPane();
     static JScrollBar jScrollBar = new JScrollBar();
     static JTextArea jTextArea = new JTextArea();
-    static JPanel downloadImage = new JPanel();
     static JLabel percentLabel = new JLabel();
     static JLabel timeLeftLabel = new JLabel();
     static CardLayout layout = new CardLayout();
     static JFileChooser jFileChooser = new JFileChooser();
     static JMenuBar menuBar = new JMenuBar();
-    static JButton otherButton = new JButton("Other..");
+
     static JLabel chooseOS = new JLabel("To start, choose your operating system installer you want to write to your USB:");
     static JLabel welcomeLabel = new JLabel("Welcome!");
     static JLabel linuxChoose = new JLabel("Please choose your linux Installer:");
+    static JLabel othersChoose = new JLabel("Please choose an image file:");
     JMenu fileMenu = new JMenu("File");
     JMenu viewMenu = new JMenu("View");
     JMenu downloadMenu = new JMenu("Download");
+    static JTextField imageFileDirectory = new JTextField("Enter the file path or select a file..");
     //Buttons
+    static JButton selectFile = new JButton("Select a Image File");
     static JButton macOSButton = new JButton("macOS");
     static JButton windowsButton = new JButton("Windows");
     static JButton linuxButton = new JButton("Linux");
+    static JButton otherButton = new JButton("Other..");
     static JButton ubuntu = new JButton("Ubuntu 22.04(Codenamed Jammy Jellyfish)");
     static JButton debian = new JButton("Debian 11-32 bit(Codenamed Bullseye)");
     static JButton debian64 = new JButton("Debian 11 64-bit (Codenamed Bullseye)");
@@ -84,8 +89,72 @@ class Main {
     static JButton Windows10 = new JButton("Windows 10 32-bit");
     static JButton Windows10_64 = new JButton("Windows 10 64-bit");
     static JButton Windows11 = new JButton("Windows 11");
+    static JButton next = new JButton("Next");
+    static JButton back = new JButton("Back");
+    static JButton back2 = new JButton("Back");
+    static JButton back3 = new JButton("Back");
+    static JButton back4 = new JButton("Back");
+    static JButton back5 = new JButton("Back");
+    static JButton back6 = new JButton("Back");
+    static JButton back7 = new JButton("Back");
+    static JButton back8 = new JButton("Back");
+
+
     static JLabel windowsChose = new JLabel("Chose your Windows Version");
+    //Image File
+    static File image ;
     public static void main(String[] args){
+        selectFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int response = jFileChooser.showOpenDialog(null);
+                if(response == JFileChooser.APPROVE_OPTION) {
+                    imageFileDirectory.setText(jFileChooser.getSelectedFile().getAbsolutePath());
+                }
+            }
+        });
+        otherButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                layout.show(ApplicationPanel, "5");
+            }
+        });
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(ApplicationPanel, "1");
+            }
+        });
+        macOSButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(ApplicationPanel, "2");
+            }
+        });
+        windowsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                layout.show(ApplicationPanel, "4");
+            }
+        });
+        back2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                layout.show(ApplicationPanel, "1");
+            }
+        });
+        back4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                layout.show(ApplicationPanel, "1");
+            }
+        });
+        back3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                layout.show(ApplicationPanel, "1");
+            }
+        });
+        linuxButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(ApplicationPanel, "3");
+            }
+        });
         frame.setSize(new Dimension(500,400));
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         welcomeLabel.setFont(new Font("SansSerif", Font.PLAIN,30));
@@ -101,7 +170,7 @@ class Main {
         macOS.add(macOS_11);
         macOS.add(macOS_12);
         macOS.add(macOS_12_MBP);
-        macOS.add(previous[0]);
+        macOS.add(back);
         Linux.add(linuxChoose);
         Linux.add(ubuntu);
         Linux.add(ubuntuServer);
@@ -132,23 +201,30 @@ class Main {
         Linux.add(blackArch);
         Linux.add(blackArchMinimum);
         Linux.add(blackArchNet);
-        Linux.add(previous[1]);
+        Linux.add(back2);
         Windows.add(windowsChose);
         Windows.add(Windows8);
         Windows.add(Windows8_64);
         Windows.add(Windows10);
         Windows.add(Windows10_64);
         Windows.add(Windows11);
-        Windows.add(previous[2]);
+        Windows.add(back3);
+        others.add(othersChoose);
+        others.add(imageFileDirectory);
+        others.add(selectFile);
+        others.add(back4);
+        others.add(next);
+        downloadImage.add(jProgressBar);
         ApplicationPanel.setLayout(layout);
         ApplicationPanel.add(welcome,"1");
         ApplicationPanel.add(macOS,"2");
         ApplicationPanel.add(Linux,"3");
         ApplicationPanel.add(Windows,"4");
-        ApplicationPanel.add(writeImageToUSB,"5");
-        ApplicationPanel.add(verifyUSB,"6");
-        ApplicationPanel.add(finishedScreen,"7");
-        layout.show(ApplicationPanel ,"4");
+        ApplicationPanel.add(others,"5");
+        ApplicationPanel.add(writeImageToUSB,"6");
+        ApplicationPanel.add(verifyUSB,"7");
+        ApplicationPanel.add(finishedScreen,"8");
+        layout.show(ApplicationPanel ,"1");
         frame.add(menuBar);
         frame.add(ApplicationPanel);
         //frame.pack();
